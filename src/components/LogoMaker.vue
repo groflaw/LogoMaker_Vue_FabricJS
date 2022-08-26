@@ -259,8 +259,11 @@ export default {
           top: iconTop,
           hoverCursor: "pointer",
         });
-        if (Object.prototype.hasOwnProperty.call(__svg, "_objects"))
+        if (Object.prototype.hasOwnProperty.call(__svg, "_objects")) {
           __svg._objects.forEach((_) => _.set({ fill: iconColor }));
+        } else {
+          __svg.set({ fill: iconColor });
+        }
         __canvas.add(__svg);
 
         _this.showColorPickerBtn("icon");
@@ -506,8 +509,11 @@ export default {
         top: iconTop,
         hoverCursor: "pointer",
       });
-      if (Object.prototype.hasOwnProperty.call(__svg, "_objects"))
+      if (Object.prototype.hasOwnProperty.call(__svg, "_objects")) {
         __svg._objects.forEach((_) => _.set({ fill: iconColor }));
+      } else {
+        __svg.set({ fill: iconColor });
+      }
       __canvas.add(__svg);
     });
 
@@ -645,8 +651,11 @@ export default {
       __canvas.renderAll();
     },
     iconColor() {
-      if (Object.prototype.hasOwnProperty.call(__svg, "_objects"))
+      if (Object.prototype.hasOwnProperty.call(__svg, "_objects")) {
         __svg._objects.forEach((_) => _.set({ fill: this.iconColor }));
+      } else {
+        __svg.set({ fill: this.iconColor });
+      }
       if (Object.prototype.hasOwnProperty.call(__colorBtn, "_objects"))
         __colorBtn._objects.forEach((_) => _.set({ fill: this.iconColor }));
       __canvas.renderAll();
