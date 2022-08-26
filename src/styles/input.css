@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "Nova Oval";
+  src: url("../assets/fonts/NovaOval.ttf");
+}
+@font-face {
+  font-family: "Abril Fatface";
+  src: url("../assets/fonts/AbrilFatface-Regular.ttf");
+}
+@font-face {
+  font-family: "Audiowide";
+  src: url("../assets/fonts/Audiowide-Regular.ttf");
+}
+@font-face {
+  font-family: "Average";
+  src: url("../assets/fonts/Average-Regular.ttf");
+}
+@font-face {
+  font-family: "Calligraffitti";
+  src: url("../assets/fonts/Calligraffitti-Regular.ttf");
+}
+@font-face {
+  font-family: "Carrois Gothic";
+  src: url("../assets/fonts/CarroisGothic-Regular.ttf");
+}
+@font-face {
+  font-family: "Chewy";
+  src: url("../assets/fonts/Chewy-Regular.ttf");
+}
+@font-face {
+  font-family: "Chicle";
+  src: url("../assets/fonts/Chicle-Regular.ttf");
+}
+@font-face {
+  font-family: "Concert One";
+  src: url("../assets/fonts/ConcertOne-Regular.ttf");
+}
+@font-face {
+  font-family: "Cookie";
+  src: url("../assets/fonts/Cookie-Regular.ttf");
+}
+@font-face {
+  font-family: "Creepster";
+  src: url("../assets/fonts/Creepster-Regular.ttf");
+}
+@font-face {
+  font-family: "Darker Grotesque";
+  src: url("../assets/fonts/DarkerGrotesque-Regular.ttf");
+}
+@font-face {
+  font-family: "Flamenco";
+  src: url("../assets/fonts/Flamenco-Regular.ttf");
+}
+@font-face {
+  font-family: "Handlee";
+  src: url("../assets/fonts/Handlee-Regular.ttf");
+}
+@font-face {
+  font-family: "Henny Penny";
+  src: url("../assets/fonts/HennyPenny-Regular.ttf");
+}
+@font-face {
+  font-family: "Lancelot";
+  src: url("../assets/fonts/Lancelot-Regular.ttf");
+}
+@font-face {
+  font-family: "Macondo";
+  src: url("../assets/fonts/Macondo-Regular.ttf");
+}
+@font-face {
+  font-family: "Monoton";
+  src: url("../assets/fonts/Monoton-Regular.ttf");
+}
+@font-face {
+  font-family: "Nova Oval";
+  src: url("../assets/fonts/NovaOval.ttf");
+}
+@font-face {
+  font-family: "Open Sans";
+  src: url("../assets/fonts/opensans.woff");
+}
+@font-face {
+  font-family: "Orbitron";
+  src: url("../assets/fonts/Orbitron[wght].ttf");
+}
+@font-face {
+  font-family: "Parisienne";
+  src: url("../assets/fonts/Parisienne-Regular.ttf");
+}
+@font-face {
+  font-family: "Purple Purse";
+  src: url("../assets/fonts/PurplePurse-Regular.ttf");
+}
+@font-face {
+  font-family: "Red Rose";
+  src: url("../assets/fonts/RedRose[wght].ttf");
+}
+@font-face {
+  font-family: "Revalia";
+  src: url("../assets/fonts/Revalia-Regular.ttf");
+}
+@font-face {
+  font-family: "Ribeye";
+  src: url("../assets/fonts/Ribeye-Regular.ttf");
+}
+@font-face {
+  font-family: "Righteous";
+  src: url("../assets/fonts/Righteous-Regular.ttf");
+}
+@font-face {
+  font-family: "Sacramento";
+  src: url("../assets/fonts/Sacramento-Regular.ttf");
+}
+@font-face {
+  font-family: "Sirin Stencil";
+  src: url("../assets/fonts/SirinStencil-Regular.ttf");
+}
+@font-face {
+  font-family: "Spirax";
+  src: url("../assets/fonts/Spirax-Regular.ttf");
+}
+@font-face {
+  font-family: "Wellfleet";
+  src: url("../assets/fonts/Wellfleet-Regular.ttf");
+}
+@font-face {
+  font-family: "Yeseva One";
+  src: url("../assets/fonts/YesevaOne-Regular.ttf");
+}
