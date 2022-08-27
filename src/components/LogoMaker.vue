@@ -44,11 +44,11 @@
                 class="float-left"
               >
                 <v-btn
-                  @click="changeIcon(item.image), handleItemChange('icon')"
+                  @click="changeIcon(item.icon_url), handleItemChange('icon')"
                   depressed
                   style="height: 64px; width: 64px"
                 >
-                  <img :src="item.image" class="w-6 h-6" alt="" />
+                  <img :src="item.icon_url" class="w-6 h-6" alt="" />
                 </v-btn>
               </div>
             </div>
@@ -175,6 +175,7 @@ import iconJson from "../common/data/icons.js";
 import IconToolbox from "@/components/Toolboxs/IconToolbox";
 import FontToolbox from "@/components/Toolboxs/FontToolbox";
 import { fabric } from "fabric";
+import OAuth from "oauth";
 
 let __svg = null;
 let __canvas = null;
@@ -182,6 +183,22 @@ let __companyText = null;
 let __taglineText = null;
 let __bg = null;
 let __colorBtn = null;
+
+// key and secret for none-project
+const KEY = "823ece0a0e4e4782bac71fa2bd6e25fe";
+const SECRET = "829d0fa1ddf345a78e7739deac93b66c";
+
+const oauth = new OAuth.OAuth(
+  "http://api.thenounproject.com",
+  "http://api.thenounproject.com",
+  KEY,
+  SECRET,
+  "1.0A",
+  null,
+  "HMAC-SHA1",
+  undefined,
+  { Accept: "application/json" }
+);
 
 fabric.Object.prototype.cornerColor = "rgb(56, 189, 248)";
 fabric.Object.prototype.cornerStyle = "circle";
@@ -554,7 +571,6 @@ export default {
     });
 
     __canvas.add(__companyText);
-    console.log(__companyText);
     __canvas.add(__taglineText);
 
     __companyText.setCoords();
@@ -631,14 +647,27 @@ export default {
       }
     });
   },
+
   watch: {
     searchIcon() {
       if (this.searchIcon === "") {
         this.searchedIcons = iconJson;
       } else {
-        this.searchedIcons = iconJson.filter((icon) => {
-          return icon.imageName.includes(this.searchIcon);
-        });
+        const _this = this;
+        oauth.get(
+          `http://api.thenounproject.com/icons/${this.searchIcon}?limit_to_public_domain=1&limit=30`,
+          KEY,
+          SECRET,
+          function (e, res) {
+            if (e) console.error(e);
+            else {
+              _this.searchedIcons = res.icons.map((icon) => ({
+                icon_url: icon.icon_url,
+                term: icon.term,
+              }));
+            }
+          }
+        );
       }
     },
     companyTextColor() {
