@@ -93,76 +93,100 @@
               <div v-else class="mb-6 emptyToolbox"></div>
             </div>
           </v-row>
-          <v-row>
-            <v-col md="4">
-              <v-color-picker
-                style="position: absolute; z-index: 9"
-                v-if="showCompanyTextColorPalet"
-                :mode.sync="mode"
-                show-swatches
-                v-model="companyTextColor"
-                swatches-max-height="300px"
-              >
-              </v-color-picker>
-              <v-color-picker
-                style="position: absolute; z-index: 9"
-                v-if="showTaglineTextColorPalet"
-                :mode.sync="mode"
-                show-swatches
-                v-model="taglineTextColor"
-                swatches-max-height="300px"
-              >
-              </v-color-picker>
-              <v-color-picker
-                style="position: absolute; z-index: 9"
-                v-if="showIconColorPalet"
-                :mode.sync="mode"
-                show-swatches
-                v-model="iconColor"
-                swatches-max-height="300px"
-              >
-              </v-color-picker>
-              <div
-                v-if="showCompanyTextColorPalet"
-                style="
-                  position: fixed;
-                  z-index: 8;
-                  top: 0;
-                  left: 0;
-                  width: 100%;
-                  height: 100vh;
-                "
-                @click="showCompanyTextColorPalet = false"
-              ></div>
-              <div
-                v-if="showTaglineTextColorPalet"
-                style="
-                  position: fixed;
-                  z-index: 8;
-                  top: 0;
-                  left: 0;
-                  width: 100%;
-                  height: 100vh;
-                "
-                @click="showTaglineTextColorPalet = false"
-              ></div>
-              <div
-                v-if="showIconColorPalet"
-                style="
-                  position: fixed;
-                  z-index: 8;
-                  top: 0;
-                  left: 0;
-                  width: 100%;
-                  height: 100vh;
-                "
-                @click="showIconColorPalet = false"
-              ></div>
-            </v-col>
-          </v-row>
+
           <!-- <v-col sm="12">{{ companyName }}</v-col> -->
-          <v-col md="12" ref="canvas" class="pa-0 logo-customise__canvas">
+          <v-col
+            md="12"
+            ref="canvas"
+            class="pa-0 logo-customise__canvas"
+            style="position: relative"
+          >
             <canvas id="c" :width="canvasWidth"></canvas>
+
+            <v-color-picker
+              :style="{
+                position: 'absolute',
+                'z-index': 9,
+                top: parseInt(colorIconTop - 100) + 'px',
+                left: parseInt(colorIconLeft + 30) + 'px',
+              }"
+              v-if="showCompanyTextColorPalet"
+              :mode.sync="mode"
+              show-swatches
+              elevation="10"
+              hide-inputs
+              v-model="companyTextColor"
+              swatches-max-height="150px"
+            ></v-color-picker>
+
+            <v-color-picker
+              :style="{
+                position: 'absolute',
+                'z-index': 9,
+                top: parseInt(colorIconTop - 100) + 'px',
+                left: parseInt(colorIconLeft + 30) + 'px',
+              }"
+              v-if="showTaglineTextColorPalet"
+              :mode.sync="mode"
+              show-swatches
+              elevation="10"
+              hide-inputs
+              v-model="taglineTextColor"
+              swatches-max-height="150px"
+            >
+            </v-color-picker>
+            <v-color-picker
+              :style="{
+                position: 'absolute',
+                'z-index': 9,
+                top: parseInt(colorIconTop - 100) + 'px',
+                left: parseInt(colorIconLeft + 30) + 'px',
+              }"
+              v-if="showIconColorPalet"
+              :mode.sync="mode"
+              show-swatches
+              elevation="10"
+              hide-inputs
+              v-model="iconColor"
+              swatches-max-height="150px"
+            >
+            </v-color-picker>
+            <div
+              v-if="showCompanyTextColorPalet"
+              style="
+                position: fixed;
+                z-index: 8;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+              "
+              @click="showCompanyTextColorPalet = false"
+            ></div>
+            <div
+              v-if="showTaglineTextColorPalet"
+              style="
+                position: fixed;
+                z-index: 8;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+              "
+              @click="showTaglineTextColorPalet = false"
+            ></div>
+            <div
+              v-if="showIconColorPalet"
+              style="
+                position: fixed;
+                z-index: 8;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+              "
+              @click="showIconColorPalet = false"
+            ></div>
           </v-col>
         </v-col>
       </v-row>
@@ -252,6 +276,9 @@ export default {
     iconScaleX: 0.5,
     iconScaleY: 0.5,
     selectedItem: "icon", //'icon', 'company', 'tagline'
+    colorIconLeft: Number,
+    colorIconTop: Number,
+    colorIconColor: "",
   }),
   components: {
     IconToolbox,
@@ -319,19 +346,20 @@ export default {
       __canvas.remove(...cBtns);
 
       const { iconScaleX, iconScaleY } = this;
-      let iconLeft, iconTop, iconColor; //for color picker btn
       if (item === "company") {
-        iconLeft = this.companyTextLeft + 20 + __companyText.width / 2;
-        iconTop = this.companyTextTop;
-        iconColor = this.companyTextColor;
+        this.colorIconLeft =
+          this.companyTextLeft + 20 + __companyText.width / 2;
+        this.colorIconTop = this.companyTextTop;
+        this.colorIconColor = this.companyTextColor;
       } else if (item === "tagline") {
-        iconLeft = this.taglineTextLeft + 20 + __taglineText.width / 2;
-        iconTop = this.taglineTextTop;
-        iconColor = this.taglineTextColor;
+        this.colorIconLeft =
+          this.taglineTextLeft + 20 + __taglineText.width / 2;
+        this.colorIconTop = this.taglineTextTop;
+        this.colorIconColor = this.taglineTextColor;
       } else {
-        iconLeft = this.iconLeft + 20 + __svg.width / 4;
-        iconTop = this.iconTop;
-        iconColor = this.iconColor;
+        this.colorIconLeft = this.iconLeft + 20 + __svg.width / 4;
+        this.colorIconTop = this.iconTop;
+        this.colorIconColor = this.iconColor;
       }
 
       const _this = this;
@@ -344,15 +372,17 @@ export default {
           scaleY: iconScaleY / 8,
           originX: "center",
           originY: "center",
-          fill: iconColor,
-          left: iconLeft,
-          top: iconTop,
+          fill: this.colorIconColor,
+          left: this.colorIconLeft,
+          top: this.colorIconTop,
           hasControls: false,
           selectable: false,
           hoverCursor: "pointer",
         });
         if (Object.prototype.hasOwnProperty.call(__colorBtn, "_objects"))
-          __colorBtn._objects.forEach((_) => _.set({ fill: iconColor }));
+          __colorBtn._objects.forEach((_) =>
+            _.set({ fill: this.colorIconColor })
+          );
         __colorBtn.on("mousedown", function (e) {
           if (e.target.name === "company_cBtn") {
             _this.showCompanyTextColorPalet = true;
@@ -703,5 +733,8 @@ export default {
 <style scoped>
 .emptyToolbox {
   height: 74.5px;
+}
+.colorPicker {
+  top: v-bind("colorIconTop") px;
 }
 </style>
